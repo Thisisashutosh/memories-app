@@ -1,22 +1,31 @@
 const Post = () => {
   return (
-    <div className="w-72 h-96 bg-white m-5 flex-col items-center justify-center rounded-2xl overflow-hidden drop-shadow-2xl">
-      <div className="img relative">
+    <div className="w-80 h-fit bg-white m-5 flex-col items-center justify-center rounded overflow-hidden drop-shadow-2xl">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg">
         <img
-          src="https://e0.pxfuel.com/wallpapers/26/275/desktop-wallpaper-anime-digital-art-cozy-anime.jpg"
-          className="h-44"
-          alt="image"
+          className="w-full"
+          src="https://c4.wallpaperflare.com/wallpaper/250/816/944/beautiful-mountain-sunset-picture-wallpaper-preview.jpg"
+          alt="Sunset in the mountains"
         />
-        <div className="absolute top-0 left-0 p-3 text-white bg-black bg-opacity-40 w-72 h-44">
-          <h1 className="font-normal text-2xl p-3 pb-0">Rome</h1>
-          <p className="font-normal text-xl p-3 pt-0">6 hours ago</p>
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+          <p className="text-gray-700 text-base">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptatibus quia, nulla! Maiores et perferendis eaque,
+            exercitationem praesentium nihil.
+          </p>
         </div>
-      </div>
-      <div className="tags p-3 text-gray-500">#yes #no</div>
-      <h1 className="text-black font-normal text-2xl p-3">This is title</h1>
-      <div className="desc text-gray-500 p-3">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet illum
-        libero architecto!
+        <div className="px-6 pt-4 pb-2">
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #photography
+          </span>
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #travel
+          </span>
+          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            #winter
+          </span>
+        </div>
       </div>
     </div>
   );

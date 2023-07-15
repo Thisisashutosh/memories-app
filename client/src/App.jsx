@@ -1,6 +1,6 @@
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
-import getPosts from "./actions/posts";
+import { getPosts } from "./actions/posts";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -27,13 +27,13 @@ function App() {
       </nav>
 
       <div className="flex-initial w-auto h-fit m-5 mb-0 pb-0 p-5 rounded-xl bg-white flex items-center justify-between">
-        <div className="posts flex items-center justify-center flex-wrap">
+        <div className="posts w-4/5 flex items-center justify-center flex-wrap">
           <Posts />
           <Posts />
           <Posts />
           <Posts />
         </div>
-        <div className="form">
+        <div className="form w-1/5 h-fit">
           <Form />
         </div>
       </div>
