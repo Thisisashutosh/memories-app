@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createPost } from "../../actions/posts";
 
 const Form = () => {
+  const dispatch = useDispatch();
   const handleSubmit = () => {};
-  const handlesecondsubmit = () => {};
-  const clear = () => {};
+  const handlesecondsubmit = (e) => {
+    e.preventDefault();
+    dispatch(createPost(postData));
+  };
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -28,9 +33,7 @@ const Form = () => {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64);
     setPostData({ ...postData, selectedFile: base64 });
-    console.log(postData);
   };
 
   return (
@@ -59,7 +62,7 @@ const Form = () => {
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               Search
             </button>
@@ -84,10 +87,21 @@ const Form = () => {
             />
           </div>
           <div className="mb-4">
+            <input
+              className="shadow appearance-none border rounded w-full py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              placeholder="Creator"
+              onChange={(e) =>
+                setPostData({ ...postData, creator: e.target.value })
+              }
+            />
+          </div>
+          <div className="mb-4">
             <textarea
               id="message"
               rows="4"
-              className="shadow appearance-none border rounded w-full h-48 py-4 px-5 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full h-32 py-4 px-5 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Write your thoughts here..."
               onChange={(e) =>
                 setPostData({ ...postData, message: e.target.value })
@@ -117,14 +131,13 @@ const Form = () => {
           <div className="flex-col items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               Submit
             </button>
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold mt-3 py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
-              type="button"
-              onClick={clear}
+              type="reset"
             >
               Clear
             </button>
