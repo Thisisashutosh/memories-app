@@ -1,13 +1,25 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({ currentID, setcurrentID }) => {
+  const post = useSelector((state) =>
+    currentID ? state.posts.find((message) => message._id === currentID) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
   const dispatch = useDispatch();
   const handleSubmit = () => {};
   const handlesecondsubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
+
+    if (currentID) {
+      dispatch(updatePost(currentID, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
   };
   const [postData, setPostData] = useState({
     creator: "",

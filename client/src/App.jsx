@@ -2,10 +2,11 @@ import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
 import { getPosts } from "./actions/posts";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const dispatch = useDispatch();
+  const [currentID, setcurrentID] = useState(null)
 
   useEffect(() => {
     dispatch(getPosts());
@@ -28,10 +29,10 @@ function App() {
 
       <div className="flex-initial w-auto h-fit m-5 mb-0 pb-0 p-5 rounded-xl bg-white flex items-center justify-between">
         <div className="posts w-4/5 flex items-center justify-center flex-wrap">
-          <Posts />
+          <Posts setcurrentID={setcurrentID} />
         </div>
         <div className="form w-1/5 h-fit">
-          <Form />
+          <Form currentID={currentID} setcurrentID={setcurrentID} />
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Loader from "../loader/Loader";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Posts = () => {
+const Posts = ({ setcurrentID }) => {
   // const posts = useSelector((state) => {
   //   state.posts;
   // });
@@ -36,7 +36,7 @@ const Posts = () => {
     <>
       <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
         {posts.map((post) => (
-          <Post post={post} key={post._id} />
+          <Post post={post} key={post._id} setcurrentID={setcurrentID} />
         ))}
       </div>
     </>
