@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const dispatch = useDispatch();
-  const [currentID, setcurrentID] = useState(null)
+  const [currentID, setcurrentID] = useState(0)
 
   useEffect(() => {
     dispatch(getPosts());

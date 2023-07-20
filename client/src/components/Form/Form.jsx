@@ -127,7 +127,7 @@ const Form = ({ currentID, setcurrentID }) => {
               type="text"
               placeholder="Tags"
               onChange={(e) =>
-                setPostData({ ...postData, tags: e.target.value })
+                setPostData({ ...postData, tags: e.target.value.split(",") })
               }
             />
           </div>
@@ -150,6 +150,7 @@ const Form = ({ currentID, setcurrentID }) => {
             <button
               className="bg-red-500 hover:bg-red-700 text-white font-bold mt-3 py-2 px-4 w-full rounded focus:outline-none focus:shadow-outline"
               type="reset"
+              onClick={()=>setcurrentID(null)}
             >
               Clear
             </button>

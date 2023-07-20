@@ -1,6 +1,10 @@
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../actions/posts";
 
 const Post = ({ post, setcurrentID }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-80 h-fit bg-white m-5 flex-col items-center justify-center rounded overflow-hidden drop-shadow-2xl">
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -28,7 +32,7 @@ const Post = ({ post, setcurrentID }) => {
             </p>
             <p className="text-gray-600">{moment(post.createdAt).fromNow()}</p>
           </div>
-          <div className="">
+          <div className=" flex items-center justify-between gap-3">
             <button
               className="flex p-2.5 bg-gray-500 rounded-xl hover:rounded-3xl hover:bg-gray-700 transition-all duration-300 text-white"
               onClick={() => setcurrentID(post._id)}
@@ -47,6 +51,16 @@ const Post = ({ post, setcurrentID }) => {
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                 />
               </svg>
+            </button>
+            <button
+              className="flex p-2.5 bg-gray-400 rounded-xl hover:rounded-3xl hover:bg-gray-500 transition-all duration-300 text-white"
+              onClick={() => dispatch(deletePost(post._id))}
+            >
+              <img
+                src="https://static.thenounproject.com/png/2157236-200.png"
+                className="h-6 w-6"
+                alt=""
+              />
             </button>
           </div>
         </div>
