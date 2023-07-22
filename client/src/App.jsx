@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
-import Signup from "./components/SignUp/Signup";
+import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
     <div className="h-full w-full flex-col items-start justify-center m-0 p-0">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </div>
   );
