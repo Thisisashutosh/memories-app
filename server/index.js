@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -31,6 +32,7 @@ mongoose.connection.on("disconnected", () => {
 
 //middlewares
 app.use("/posts", postRoutes);
+app.use("/user", userRoutes);
 
 app.listen(8000, () => {
   connect();

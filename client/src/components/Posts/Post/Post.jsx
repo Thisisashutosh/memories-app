@@ -1,22 +1,69 @@
-const Post = () => {
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../../actions/posts";
+
+const Post = ({ post, setcurrentID }) => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="w-72 h-96 bg-white m-5 flex-col items-center justify-center rounded-2xl overflow-hidden drop-shadow-2xl">
-      <div className="img relative">
+    <div className="w-80 h-fit bg-white m-5 flex-col items-center justify-center rounded overflow-hidden drop-shadow-2xl">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg">
         <img
-          src="https://e0.pxfuel.com/wallpapers/26/275/desktop-wallpaper-anime-digital-art-cozy-anime.jpg"
-          className="h-44"
-          alt="image"
+          className="w-full"
+          src={post.selectedFile}
+          alt="Sunset in the mountains"
         />
-        <div className="absolute top-0 left-0 p-3 text-white bg-black bg-opacity-40 w-72 h-44">
-          <h1 className="font-normal text-2xl p-3 pb-0">Rome</h1>
-          <p className="font-normal text-xl p-3 pt-0">6 hours ago</p>
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{post.title}</div>
+          <p className="text-gray-700 text-base">{post.message}</p>
         </div>
-      </div>
-      <div className="tags p-3 text-gray-500">#yes #no</div>
-      <h1 className="text-black font-normal text-2xl p-3">This is title</h1>
-      <div className="desc text-gray-500 p-3">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet illum
-        libero architecto!
+        <div className="px-6 pt-4 pb-2">
+          {post.tags.map((tag) => (
+            <span
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              key={post._id}
+            >{`#${tag} `}</span>
+          ))}
+        </div>
+        <div className="text-sm px-6 pb-2 flex items-center justify-between">
+          <div className="">
+            <p className="text-gray-900 font-semibold leading-none">
+              {post.creator}
+            </p>
+            <p className="text-gray-600">{moment(post.createdAt).fromNow()}</p>
+          </div>
+          <div className=" flex items-center justify-between gap-3">
+            <button
+              className="flex p-2.5 bg-gray-500 rounded-xl hover:rounded-3xl hover:bg-gray-700 transition-all duration-300 text-white"
+              onClick={() => setcurrentID(post._id)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+            </button>
+            <button
+              className="flex p-2.5 bg-gray-400 rounded-xl hover:rounded-3xl hover:bg-gray-500 transition-all duration-300 text-white"
+              onClick={() => dispatch(deletePost(post._id))}
+            >
+              <img
+                src="https://static.thenounproject.com/png/2157236-200.png"
+                className="h-6 w-6"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
