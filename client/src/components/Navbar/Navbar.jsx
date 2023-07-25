@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [isLogged, setIsLogged] = useState(false);
-  console.log(user);
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+    setUser(null);
+    setIsLogged(false);
+  };
+
+  useEffect(() => {
+    const token = user?.token;
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+    user ? setIsLogged(true) : setIsLogged(false);
+  }, []);
   return (
     <div>
       <nav className="w-auto h-fit m-5 p-5 rounded-xl bg-[#f3eeee] flex items-center justify-between drop-shadow-2xl">
@@ -29,7 +43,7 @@ const Navbar = () => {
           </h1>
           <button
             className="rounded bg-red-500 text-white pt-2 pb-2 pl-5 pr-5"
-            onClick={() => navigate("/auth")}
+            onClick={user ? logout : () => navigate("/auth")}
           >
             {isLogged ? "Logout" : "SignIn"}
           </button>
